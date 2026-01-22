@@ -1,0 +1,222 @@
+:root{
+  --bg1:#0b0700;
+  --bg2:#1a0f00;
+  --card: rgba(25, 15, 0, 0.75);
+  --stroke: rgba(255, 195, 72, 0.18);
+  --text:#fff7e6;
+  --muted: rgba(255, 245, 220, 0.68);
+  --yellow:#ffd166;
+  --orange:#ff8a00;
+  --orange2:#ffb300;
+  --shadow: 0 18px 60px rgba(0,0,0,0.55);
+  --radius: 22px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background: radial-gradient(1200px 700px at 20% 15%, rgba(255, 138, 0, 0.18), transparent 55%),
+              radial-gradient(900px 600px at 80% 25%, rgba(255, 209, 102, 0.14), transparent 55%),
+              linear-gradient(180deg, var(--bg1), var(--bg2));
+  color: var(--text);
+  overflow-x:hidden;
+}
+
+.bg-glow{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(600px 300px at 30% 40%, rgba(255, 138, 0, 0.12), transparent 60%),
+    radial-gradient(500px 260px at 70% 55%, rgba(255, 209, 102, 0.10), transparent 60%);
+  filter: blur(10px);
+  opacity:0.9;
+}
+
+.wrap{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 40px 16px 30px;
+}
+
+.topbar{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  align-items:flex-start;
+  margin-bottom:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo{
+  width:52px;
+  height:52px;
+  display:grid;
+  place-items:center;
+  font-size:26px;
+  border-radius:16px;
+  background: linear-gradient(135deg, rgba(255, 138, 0, 0.22), rgba(255, 209, 102, 0.16));
+  border: 1px solid var(--stroke);
+  box-shadow: var(--shadow);
+}
+
+h1{
+  font-size:30px;
+  letter-spacing:0.2px;
+}
+
+#subTitle{
+  margin-top:2px;
+  color: var(--muted);
+  font-size:14px;
+}
+
+.dayRow{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.navBtn{
+  border:none;
+  outline:none;
+  color: var(--text);
+  background: linear-gradient(135deg, rgba(255,138,0,0.18), rgba(255,209,102,0.12));
+  border: 1px solid var(--stroke);
+  padding: 10px 14px;
+  border-radius: 14px;
+  cursor:pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.navBtn:hover{
+  transform: translateY(-1px);
+}
+
+.dayPill{
+  flex:1;
+  text-align:center;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--stroke);
+  background: rgba(20, 12, 0, 0.6);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  font-weight:700;
+  letter-spacing:0.6px;
+}
+
+.card{
+  width:100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--stroke);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  backdrop-filter: blur(10px);
+  animation: pop 0.4s ease;
+}
+
+@keyframes pop{
+  from{transform: translateY(8px); opacity:0;}
+  to{transform: translateY(0); opacity:1;}
+}
+
+.menu-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.menu-head h2{
+  font-size:20px;
+  color: var(--yellow);
+}
+
+.today-badge{
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #201000;
+  background: linear-gradient(135deg, var(--yellow), var(--orange2));
+}
+
+.items{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding: 12px 12px;
+  border-radius: 16px;
+  background: rgba(255, 170, 40, 0.06);
+  border: 1px solid rgba(255, 209, 102, 0.14);
+}
+
+.item span:first-child{
+  color: rgba(255, 245, 220, 0.8);
+  font-weight: 600;
+}
+
+.item span:last-child{
+  color: var(--text);
+  font-weight: 700;
+}
+
+.muted{
+  color: var(--muted);
+  font-size:14px;
+}
+
+.footer{
+  margin-top:16px;
+  text-align:center;
+  color: rgba(255, 245, 220, 0.5);
+  font-size:13px;
+}
+
+.skeleton{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.sk-title,.sk-line{
+  border-radius: 14px;
+  background: linear-gradient(90deg, rgba(255, 209, 102, 0.10), rgba(255, 138, 0, 0.14), rgba(255, 209, 102, 0.10));
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite linear;
+}
+
+.sk-title{ height: 22px; width: 55%; }
+.sk-line{ height: 16px; width: 100%; }
+
+@keyframes shimmer{
+  0%{ background-position: 0% 0%; }
+  100%{ background-position: 200% 0%; }
+}
+
+@media (max-width:560px){
+  .dayRow{ flex-direction:column; }
+  .navBtn{ width:100%; }
+  .dayPill{ width:100%; }
+}

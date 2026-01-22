@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mess Menu</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+  <div class="bg-glow"></div>
+
+  <main class="wrap">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">🍛</div>
+        <div>
+          <h1>Mess Menu</h1>
+          <p id="subTitle">Today’s Lunch Menu</p>
+        </div>
+      </div>
+
+      <div class="dayRow">
+        <button class="navBtn" id="prevDayBtn">⬅ Prev</button>
+        <div class="dayPill" id="dayPill">Loading...</div>
+        <button class="navBtn" id="nextDayBtn">Next ➡</button>
+      </div>
+    </header>
+
+    <section class="card" id="menuCard">
+      <div class="skeleton">
+        <div class="sk-title"></div>
+        <div class="sk-line"></div>
+        <div class="sk-line"></div>
+        <div class="sk-line"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Made for college mess 🍽️</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
