@@ -4,51 +4,55 @@ const menuData = {
   Monday: {
     title: "Monday",
     items: {
-      "Rice": "Plain Rice",
-      "Dal": "Arhar Dal",
-      "Sabzi": "Palak Paneer",
-      "Roti": "Chapati",
-      "Pickle": "Pickle",
-      "Salad": "Salad",
-      "Sweetdish/Raita": "Sabudana Kheer"
+      "Rice": "-",
+      "Dal": "-",
+      "Sabzi": "-",
+      "Roti": "-",
+      "Pickle": "-",
+      "Salad": "-",
+      "Sweetdish/Raita": "-"
     }
   },
+
   Tuesday: {
     title: "Tuesday",
     items: {
       "Rice": "Jeera Rice",
-      "Dal": "Masoor Dal",
-      "Sabzi": "Veg Kofta",
+      "Dal": "Rajmah Dal",
+      "Sabzi": "Gobhi Aloo Matar",
       "Roti": "Chapati",
       "Pickle": "Pickle",
-      "Salad": "Sprout Salad",
-      "Sweetdish/Raita": "Coconut Burffi"
+      "Salad": "Salad",
+      "Sweetdish/Raita": "Boondi Raita"
     }
   },
+
   Wednesday: {
     title: "Wednesday",
     items: {
       "Rice": "Plain Rice",
       "Dal": "Kadhi Pakoda",
-      "Sabzi": "South Indian Aloo",
+      "Sabzi": "Jeera Aloo",
       "Roti": "Chapati",
       "Pickle": "Pickle",
       "Salad": "Salad",
       "Sweetdish/Raita": "Jalebi"
     }
   },
+
   Thursday: {
     title: "Thursday",
     items: {
       "Rice": "Rice",
       "Dal": "Chole",
-      "Sabzi": "Methi Aloo",
+      "Sabzi": "South Indian Aloo",
       "Roti": "Bhature",
       "Pickle": "Pickle",
       "Salad": "Lachha Onion",
       "Sweetdish/Raita": "Boondi Raita"
     }
   },
+
   Friday: {
     title: "Friday",
     items: {
@@ -58,21 +62,23 @@ const menuData = {
       "Roti": "Chapati",
       "Pickle": "Pickle",
       "Salad": "Salad",
-      "Sweetdish/Raita": "Gajar Halwa"
+      "Sweetdish/Raita": "Suji Halwa"
     }
   },
+
   Saturday: {
     title: "Saturday",
     items: {
       "Rice": "Plain Rice",
-      "Dal": "Black Channa",
-      "Sabzi": "Sita Fal",
-      "Roti": "Bedmi Poori",
+      "Dal": "Mix Dal",
+      "Sabzi": "Cabbage Matar",
+      "Roti": "Tandoori Roti",
       "Pickle": "Pickle",
       "Salad": "Mix Salad",
-      "Sweetdish/Raita": "Balu Sahi"
+      "Sweetdish/Raita": "Dahi"
     }
   },
+
   Sunday: {
     title: "Sunday",
     items: {
@@ -94,7 +100,7 @@ const prevDayBtn = document.getElementById("prevDayBtn");
 const nextDayBtn = document.getElementById("nextDayBtn");
 
 function getTodayIndex() {
-  const jsDay = new Date().getDay();
+  const jsDay = new Date().getDay(); 
   return jsDay === 0 ? 6 : jsDay - 1;
 }
 
@@ -109,35 +115,29 @@ function renderDay(index) {
   const data = menuData[dayName];
 
   dayPill.textContent = dayName;
-  subTitle.textContent = isToday(dayName) ? "Today’s Lunch Menu" : `${dayName} Lunch Menu`;
+  subTitle.textContent = isToday(dayName)
+    ? "Today’s Lunch Menu"
+    : `${dayName} Lunch Menu`;
 
   if (!data) {
-    menuCard.innerHTML = `
-      <div class="menu-head">
-        <h2>${dayName}</h2>
-      </div>
-      <p class="muted">Menu not added yet.</p>
-    `;
+    menuCard.innerHTML = `<p class="muted">Menu not available.</p>`;
     return;
   }
 
-  const entries = Object.entries(data.items || {});
-  const itemsHtml = entries.map(([k, v]) => {
-    return `
-      <div class="item">
-        <span>${k}</span>
-        <span>${v || "-"}</span>
-      </div>
-    `;
-  }).join("");
+  const itemsHtml = Object.entries(data.items).map(([key, value]) => `
+    <div class="item">
+      <span>${key}</span>
+      <span>${value}</span>
+    </div>
+  `).join("");
 
   menuCard.innerHTML = `
     <div class="menu-head">
-      <h2>${data.title || dayName}</h2>
+      <h2>${data.title}</h2>
       ${isToday(dayName) ? `<div class="today-badge">TODAY</div>` : ""}
     </div>
     <div class="items">
-      ${itemsHtml || `<p class="muted">No items available.</p>`}
+      ${itemsHtml}
     </div>
   `;
 }
@@ -153,4 +153,3 @@ nextDayBtn.addEventListener("click", () => {
 });
 
 renderDay(currentIndex);
-
