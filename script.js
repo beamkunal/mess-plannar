@@ -1,16 +1,16 @@
-const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 const menuData = {
   Monday: {
     title: "Monday",
     items: {
-      "Rice": "-",
-      "Dal": "-",
-      "Sabzi": "-",
-      "Roti": "-",
-      "Pickle": "-",
-      "Salad": "-",
-      "Sweetdish/Raita": "-"
+      "Rice": "Plain Rice",
+      "Dal": "Arhar Dal",
+      "Sabzi": "Matar Paneer",
+      "Roti": "Chapati",
+      "Pickle": "Pickle",
+      "Salad": "Salad",
+      "Sweetdish/Raita": "Semiya Kheer"
     }
   },
 
@@ -23,7 +23,7 @@ const menuData = {
       "Roti": "Chapati",
       "Pickle": "Pickle",
       "Salad": "Salad",
-      "Sweetdish/Raita": "Boondi Raita"
+      "Sweetdish/Raita": "Boondi Sweet"
     }
   },
 
@@ -32,7 +32,7 @@ const menuData = {
     items: {
       "Rice": "Plain Rice",
       "Dal": "Kadhi Pakoda",
-      "Sabzi": "Jeera Aloo",
+      "Sabzi": "Beans Aloo",
       "Roti": "Chapati",
       "Pickle": "Pickle",
       "Salad": "Salad",
@@ -62,7 +62,7 @@ const menuData = {
       "Roti": "Chapati",
       "Pickle": "Pickle",
       "Salad": "Salad",
-      "Sweetdish/Raita": "Suji Halwa"
+      "Sweetdish/Raita": "Gulab Jamun"
     }
   },
 
@@ -70,25 +70,12 @@ const menuData = {
     title: "Saturday",
     items: {
       "Rice": "Plain Rice",
-      "Dal": "Mix Dal",
-      "Sabzi": "Cabbage Matar",
-      "Roti": "Tandoori Roti",
+      "Dal": "Black Channa",
+      "Sabzi": "Sita Fal",
+      "Roti": "Bedmi Puri",
       "Pickle": "Pickle",
       "Salad": "Mix Salad",
       "Sweetdish/Raita": "Dahi"
-    }
-  },
-
-  Sunday: {
-    title: "Sunday",
-    items: {
-      "Rice": "-",
-      "Dal": "-",
-      "Sabzi": "-",
-      "Roti": "-",
-      "Pickle": "-",
-      "Salad": "-",
-      "Sweetdish/Raita": "-"
     }
   }
 };
@@ -100,8 +87,10 @@ const prevDayBtn = document.getElementById("prevDayBtn");
 const nextDayBtn = document.getElementById("nextDayBtn");
 
 function getTodayIndex() {
-  const jsDay = new Date().getDay(); 
-  return jsDay === 0 ? 6 : jsDay - 1;
+  const jsDay = new Date().getDay(); // Sun = 0
+  if (jsDay === 0) return 0; // Sunday → show Monday
+  if (jsDay === 6) return 5; // Saturday
+  return jsDay - 1;
 }
 
 let currentIndex = getTodayIndex();
@@ -119,17 +108,16 @@ function renderDay(index) {
     ? "Today’s Lunch Menu"
     : `${dayName} Lunch Menu`;
 
-  if (!data) {
-    menuCard.innerHTML = `<p class="muted">Menu not available.</p>`;
-    return;
-  }
-
-  const itemsHtml = Object.entries(data.items).map(([key, value]) => `
-    <div class="item">
-      <span>${key}</span>
-      <span>${value}</span>
-    </div>
-  `).join("");
+  const itemsHtml = Object.entries(data.items)
+    .map(
+      ([key, value]) => `
+      <div class="item">
+        <span>${key}</span>
+        <span>${value}</span>
+      </div>
+    `
+    )
+    .join("");
 
   menuCard.innerHTML = `
     <div class="menu-head">
